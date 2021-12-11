@@ -1,0 +1,20 @@
+﻿@model EntityLayer.Concrete.Product
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Views/Shared/_AdminLayoutLte.cshtml";
+}
+
+<h2>Burası ürün ekleme sayfası</h2>
+<br />
+@using (Html.BeginForm("AddProduct", "Product", FormMethod.Post))
+{
+    <form>
+        @Html.Label("Ürün Adı")
+        @Html.TextBoxFor(x => x.Name)
+        <br />
+        @Html.Label("Kategori")
+        @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.cv)
+        <br />
+
+    </form>
+}

@@ -1,0 +1,24 @@
+﻿@using EntityLayer.Concrete
+@model List<Request> 
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayoutLte.cshtml";
+}
+
+<h1>Çağrı Listesi</h1>
+<br />
+<table class="table table-hover">
+    <tr>
+        <th>#</th>
+        <th>Başlık</th>
+        <th>Tarih</th>
+    </tr>
+    @foreach (var item in Model)
+	{
+		 <tr>
+             <td>@item.RequestID</td>
+             <td>@item.Title</td>
+             <td>@item.Date.ToShortDateString()</td>
+         </tr>
+	}
+</table>

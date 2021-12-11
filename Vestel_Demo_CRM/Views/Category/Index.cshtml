@@ -1,0 +1,38 @@
+﻿@using EntityLayer.Concrete
+@model List<Category>
+@{
+    Layout = "~/Views/Shared/_AdminLayoutLte.cshtml";
+}
+
+<!DOCTYPE html>
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h1>Burası Index</h1>
+    <br />
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Kategori Adı</th>
+            <th>Açıklama</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryID</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td><a href="/Category/CategoryDelete/@item.CategoryID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Category/CategoryEdit/@item.CategoryID" class="btn btn-warning">Güncelle</a></td>
+            </tr>
+        }
+    </table>
+    <a href="/Category/CategoryAdd/" class="btn btn-success">Yeni Kategori</a>
+</body>
+</html>

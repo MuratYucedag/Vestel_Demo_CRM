@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+@await Html.PartialAsync("~/Views/Shared/Partial/HeaderPartial.cshtml")
+
+<body class="hold-transition sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <!-- Navbar -->
+        @await Html.PartialAsync("~/Views/Shared/Partial/NavbarPartial.cshtml")
+
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        @await Html.PartialAsync("~/Views/Shared/Partial/SidebarPartial.cshtml")
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+           <br />
+            @RenderBody()
+        </div>
+    </div>
+    @await Html.PartialAsync("~/Views/Shared/Partial/ScriptPartial.cshtml")
+</body>
+</html>

@@ -1,0 +1,16 @@
+﻿@using EntityLayer.Concrete
+@model List<Category>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Adı</th>
+    </tr>
+    @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.CategoryID</td>
+                    <td>@item.Name</td>
+                </tr>
+            }
+</table> 
