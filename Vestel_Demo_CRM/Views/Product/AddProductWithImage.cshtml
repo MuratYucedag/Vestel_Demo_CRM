@@ -1,0 +1,25 @@
+﻿@model Vestel_Demo_CRM.Models.AddProductImage
+
+@{
+    ViewData["Title"] = "AddProductWithImage";
+    Layout = "~/Views/Shared/_AdminLayoutLte.cshtml";
+}
+
+<form class="form-group" method="post" enctype="multipart/form-data">
+    @Html.Label("Ürün Adı")
+    @Html.TextBoxFor(x => x.Name)
+    <br />
+    @Html.Label("Ürün Açıklaması")
+    @Html.TextBoxFor(x => x.Description)
+    <br />
+    @Html.Label("Ürün Stok")
+    @Html.TextBoxFor(x => x.Stock)
+    <br />
+    @Html.Label("Ürün Fiyatı")
+    @Html.TextBoxFor(x => x.Price)
+    <br />
+    @Html.Label("Resim Seçin")
+    <input type="file" name="ProductImage" />
+    <br />
+    <button>Verileri Kaydet</button>
+</form>

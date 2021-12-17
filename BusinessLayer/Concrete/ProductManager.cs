@@ -20,7 +20,7 @@ namespace BusinessLayer.Concrete
 
         public void TAdd(Product t)
         {
-            throw new NotImplementedException();
+            _productdal.Insert(t);
         }
 
         public void TDelete(Product t)

@@ -21,10 +21,15 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-           <br />
+            <br />
             @RenderBody()
         </div>
     </div>
     @await Html.PartialAsync("~/Views/Shared/Partial/ScriptPartial.cshtml")
+
+    <br />
+    Burası Chart
+    <br />
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

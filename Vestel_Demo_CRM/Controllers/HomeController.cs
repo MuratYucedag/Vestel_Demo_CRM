@@ -33,5 +33,34 @@ namespace Vestel_Demo_CRM.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Index2()
+        {
+            return View();
+        }
+        public IActionResult VisualizeProductResult()
+        {
+            return Json(Prolist());
+        }
+        public List<Class1> Prolist()
+        {
+            List<Class1> cs = new List<Class1>();
+            cs.Add(new Class1()
+            {
+                proname = "Aaaa",
+                stock = 10
+            });
+            cs.Add(new Class1()
+            {
+                proname = "bbb",
+                stock = 20
+            });
+            cs.Add(new Class1()
+            {
+                proname = "cc",
+                stock = 30
+            });
+            return cs;
+        }
     }
 }
