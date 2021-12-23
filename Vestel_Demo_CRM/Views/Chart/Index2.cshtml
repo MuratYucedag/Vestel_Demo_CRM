@@ -1,23 +1,21 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index2";
     Layout = "~/Views/Shared/_AdminLayoutLte.cshtml";
 }
 
-<h1>Index</h1>
-
-@*@await RenderSectionAsync("Scripts", required: false)*@
+<h1>Index 2</h1>
 
 <div class="row">
     <div class="col-lg-12">
-        <div id="chartid" style="width:800px; height:400px"></div>
+        <div id="chartid" style="width:1000px; height:800px"></div>
     </div>
 </div>
 
-@section Scripts{ 
+@section Scripts{
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
 
     google.charts.load('current', { 'packages': ['corechart'] });
 
@@ -28,23 +26,23 @@
         $(function () {
             $.ajax({
                 type: 'GET',
-                url: '/Chart/CategoryChart',
+                url: '/Chart/ProductChart',
                 success: function (chartsdata) {
                     var Data = chartsdata.jsonList;
                     var data = new google.visualization.DataTable();
 
-                    data.addColumn('string', 'categoryname'); 
-                    data.addColumn('number', 'categoryvalue');
+                    data.addColumn('string', 'productame');
+                    data.addColumn('number', 'productstock');
 
                     for (var i = 0; i < Data.length; i++) {
-                        data.addRow([Data[i].categoryname, Data[i].categoryvalue]);
+                        data.addRow([Data[i].productame, Data[i].productstock]);
                     }
 
                     var chart = new google.visualization.PieChart(document.getElementById('chartid'));
 
                     chart.draw(data,
                         {
-                            title: "Vestel Demo Proje Grafiği",
+                            title: "Vestel Demo Proje Grafiği 2",
                             position: "top",
                             fontsize: "14px"
                         });
@@ -53,7 +51,7 @@
         })
     }
 
-    
 
-</script>
+
+    </script>
 }

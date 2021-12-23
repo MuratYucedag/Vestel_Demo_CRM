@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Burası Ajax Çalışma Paneli</h1>
+
+<br />
+
+<div class="col-md-6">
+    <button type="button" id="getlist">Müşteri Listesini Getir</button>
+</div>
+
+<br />
+
+<h2>Müşteri Tablosu</h2>
+<div class="p-2" id="musterilistesi">
+
+</div>
+
+<br />
+
+<div class="p-2" id="getacustomer">
+
+</div>
+
+<div class="col-md12">
+    <div class="p-2">
+        <h3>Müşteri Getir</h3>
+        <input type="text" id="musteriid" class="form-control" />
+        <button type="button" id="getcustomer">Ara</button>
+    </div>
+</div>
+
+<br />
+
+<div class="col md-12">
+    <input type="text" class="form-control" id="custid" placeholder="ID" />
+    <br />
+    <input type="text" class="form-control" id="custname" placeholder="Adınız" />
+    <br />
+    <button class="btn btn-info" id="customeradd">Kaydet</button>
+</div>
+
+@section Scripts{
+
+
+    <script>
+        $("#getlist").click(function () {
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/Default/ListCustomer/",
+                success: function (fonk) {
+                    let musteriler = jQuery.parseJSON(fonk);
+                    console.log(musteriler);
+                    let htmlst = "<table class=table table-hover> <tr> <th> Musteri ID </th> <th> Musteri Adı </th> </tr>";
+
+                    $.each(musteriler, (index, value) => {
+                        htmlst += `<tr> <td>${value.ID}</td> <td>${value.CustomerName}</td> </tr>`
+                    });
+                    htmlst += "</table>";
+                    $("#musterilistesi").html(htmlst);
+                }
+            });
+        });
+
+        $("#getcustomer").click(x => {
+            let id = $("#musteriid").val();
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/Default/GetByID/",
+                data: { musteriid: id },
+                success: function (fonkk) {
+                    let customerchange = jQuery.parseJSON(fonkk);
+                    let htmlstr = `<table class=table table-hover> <tr> <th> Musteri ID </th> <th> Musteri Adı </th> </tr> <tr> <td> ${customerchange.ID} </td> </tr>
+<tr> <td> ${customerchange.CustomerName} </td> </tr></table>`;
+                    $("#getacustomer").html(htmlstr);
+                }
+            });
+        });
+
+        $("#customeradd").click(function () {
+            let custom = {
+                CustomerName: $("#custname").val(),
+                ID: $("#custid").val()
+            };
+            console.log(custom);
+            $.ajax({
+                type: "Post",
+                url: "/Default/AddCustomer/",
+                data: custom,
+                success: function (fonk) {
+                    let added = jQuery.parseJSON(fonk);
+                    alert(added.CustomerName + "Eklendi");
+                }
+            });
+        });
+    </script>
+}
